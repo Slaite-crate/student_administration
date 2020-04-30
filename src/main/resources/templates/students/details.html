@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>details</title>
+</head>
+<body>
+
+    <div>
+        <table>
+            <tr>
+                <th th:text="${info.id}"></th>
+                <th th:text="${info.firstName}"></th>
+                <th th:text="${info.lastName}"></th>
+                <th th:text="${info.enrollmentDate}"></th>
+                <th th:text="${info.cpr}"></th>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>student list</title>
+    <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
+</head>
+<body>
+
+    <div id="bar">
+        <a href="/">
+            <div class="top" id="kea">
+                <p class="knap-tekst">KEA</p>
+            </div>
+        </a>
+        <a href="/students">
+            <div class="top" id="students">
+                <p class="knap-tekst">students</p>
+            </div>
+        </a>
+        <a href="/courses">
+            <div class="top" id="courses">
+                <p class="knap-tekst">courses</p>
+            </div>
+        </a>
+    </div>
+
+    <div id="student-list">
+        <a href="/students/create"><button id="create">Create</button></a>
+        <table>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Enrollment date</th>
+                <th></th>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td th:text="${student.enrollmentDate}"></td>
+                <td>
+                    <a th:href="@{/students/details(id=${student.id})}"><button id="details">Details</button></a>
+                    <a href="/students/update"><button id="update">Update</button></a>
+                    <a href="/students/delete"><button id="delete">Delete</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
