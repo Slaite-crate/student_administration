@@ -32,8 +32,8 @@
                 <td th:text="${student.enrollmentDate}"></td>
                 <td>
                     <a th:href="@{/students/details(id=${student.id})}"><button id="details-btn" class = "btn">Details</button></a>
-                    <a href="/students/update"><button id="update-btn" class = "btn">Update</button></a>
-                    <a href="/students/delete"><button id="delete-btn" class = "btn">Delete</button></a>
+                    <a th:href="@{/students/update(id=${student.id})}"><button id="update-btn" class = "btn">Update</button></a>
+                    <a th:href="@{/students/delete(id=${student.id})}"><button id="delete-btn" class = "btn">Delete</button></a>
                 </td>
             </tr>
         </table>
