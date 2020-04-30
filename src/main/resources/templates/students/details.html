@@ -2,11 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>details</title>
+    <title>Details</title>
+    <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
 </head>
 <body>
-
-    <div>
+    <nav id="bar">
+    <a href="/" class="top" id="kea">KEA</a>
+    <a href="/students" class="top" id="students">Students</a>
+    <a href="/courses" class="top" id="courses">Courses</a>
+    </nav>
+    <div id="student-details" class="content">
+        <div d="student-details-back">
+            <h1>Student</h1>
+            <p>Information about selectet student</p>
+            <a href="/students"><button id="back-btn" class = "btn">Go Back</button></a>
+            <p></p>
+        </div>
+        <div id="students-details-table" class ="tbl">
         <table>
             <tr>
                 <th th:text="${info.id}"></th>
@@ -16,7 +28,7 @@
                 <th th:text="${info.cpr}"></th>
             </tr>
         </table>
+        </div>
     </div>
-
 </body>
 </html>
