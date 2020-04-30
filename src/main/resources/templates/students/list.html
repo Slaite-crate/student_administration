@@ -2,31 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Student list</title>
+    <title>Students</title>
     <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
 </head>
 <body>
-
-    <div id="bar">
-        <a href="/">
-            <div class="top" id="kea">
-                <p class="knap-tekst">KEA</p>
-            </div>
-        </a>
-        <a href="/students">
-            <div class="top" id="students">
-                <p class="knap-tekst">students</p>
-            </div>
-        </a>
-        <a href="/courses">
-            <div class="top" id="courses">
-                <p class="knap-tekst">courses</p>
-            </div>
-        </a>
-    </div>
-
-    <div id="student-list">
-        <a href="/students/create"><button id="create">Create</button></a>
+    <nav id="bar">
+    <a href="/" class="top" id="kea">KEA</a>
+    <a href="/students" class="top" id="students">Students</a>
+    <a href="/courses" class="top" id="courses">Courses</a>
+    </nav>
+    <div id="student-list" class="content">
+        <div d="student-create">
+            <h1>Students</h1>
+            <p>Enrolled students at KEA</p>
+            <a href="/students/create"><button id="create-btn" class = "btn">Create</button></a>
+            <p></p>
+        </div>
+        <div id="students-table" class ="tbl">
         <table>
             <tr>
                 <th>First name</th>
@@ -39,13 +31,13 @@
                 <td th:text="${student.lastName}"></td>
                 <td th:text="${student.enrollmentDate}"></td>
                 <td>
-                    <a th:href="@{/students/details(id=${student.id})}"><button id="details">Details</button></a>
-                    <a th:href="@{/students/update(id=${student.id})}"><button id="update">Update</button></a>
-                    <a th:href="@{/students/delete(id=${student.id})}"><button id="delete">Delete</button></a>
+                    <a th:href="@{/students/details(id=${student.id})}"><button id="details-btn" class = "btn">Details</button></a>
+                    <a href="/students/update"><button id="update-btn" class = "btn">Update</button></a>
+                    <a href="/students/delete"><button id="delete-btn" class = "btn">Delete</button></a>
                 </td>
             </tr>
         </table>
+        </div>
     </div>
-
 </body>
 </html>

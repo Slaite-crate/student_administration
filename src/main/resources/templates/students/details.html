@@ -6,26 +6,19 @@
     <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
 </head>
 <body>
-
-    <div id="bar">
-        <a href="/">
-            <div class="top" id="kea">
-                <p class="knap-tekst">KEA</p>
-            </div>
-        </a>
-        <a href="/students">
-            <div class="top" id="students">
-                <p class="knap-tekst">students</p>
-            </div>
-        </a>
-        <a href="/courses">
-            <div class="top" id="courses">
-                <p class="knap-tekst">courses</p>
-            </div>
-        </a>
-    </div>
-
-    <div>
+    <nav id="bar">
+    <a href="/" class="top" id="kea">KEA</a>
+    <a href="/students" class="top" id="students">Students</a>
+    <a href="/courses" class="top" id="courses">Courses</a>
+    </nav>
+    <div id="student-details" class="content">
+        <div d="student-details-back">
+            <h1>Student</h1>
+            <p>Information about selectet student</p>
+            <a href="/students"><button id="back-btn" class = "btn">Go Back</button></a>
+            <p></p>
+        </div>
+        <div id="students-details-table" class ="tbl">
         <table>
             <tr>
                 <th th:text="${info.id}"></th>
@@ -35,7 +28,7 @@
                 <th th:text="${info.cpr}"></th>
             </tr>
         </table>
+        </div>
     </div>
-
 </body>
 </html>
