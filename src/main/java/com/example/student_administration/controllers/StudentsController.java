@@ -4,6 +4,7 @@ import com.example.student_administration.repositories.IStudentRepository;
 import com.example.student_administration.repositories.InMemoryStudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,20 +30,25 @@ public class StudentsController {
 
     @GetMapping("/students/details")
     public String studentsDetails(@RequestParam int id, Model model){
-        model.addAttribute("info", studentRepository.read(id));
+        model.addAttribute("student", studentRepository.read(id));
         return "students/details";
     }
 
     @GetMapping("/students/delete")
     public String studentsDelete(@RequestParam int id, Model model){
-        model.addAttribute("info", studentRepository.read(id));
+        model.addAttribute("student", studentRepository.read(id));
         return "students/delete";
     }
 
     @GetMapping("/students/update")
     public String studentsUpdate(@RequestParam int id, Model model){
-        model.addAttribute("info", studentRepository.read(id));
+        model.addAttribute("student", studentRepository.read(id));
         return "students/update";
     }
 
+    @GetMapping("/students/realdelete")
+    public String deleteStudent(@RequestParam int id){
+        studentRepository.delete(id);
+        return "redirect:/students";
+    }
 }
