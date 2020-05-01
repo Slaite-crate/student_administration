@@ -7,9 +7,9 @@
 </head>
 <body>
     <nav id="bar">
-    <a href="/" class="top" id="kea">KEA</a>
-    <a href="/students" class="top" id="students">Students</a>
-    <a href="/courses" class="top" id="courses">Courses</a>
+        <a href="/" class="top" id="kea">KEA</a>
+        <a href="/students" class="top" id="students">Students</a>
+        <a href="/courses" class="top" id="courses">Courses</a>
     </nav>
     <div id="student-list" class="content">
         <div d="student-create">
@@ -19,24 +19,24 @@
             <p></p>
         </div>
         <div id="students-table" class ="tbl">
-        <table>
-            <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Enrollment date</th>
-                <th></th>
-            </tr>
-            <tr th:each="student : ${students}">
-                <td th:text="${student.firstName}"></td>
-                <td th:text="${student.lastName}"></td>
-                <td th:text="${student.enrollmentDate}"></td>
-                <td>
-                    <a th:href="@{/students/details(id=${student.id})}"><button id="details-btn" class = "btn">Details</button></a>
-                    <a th:href="@{/students/update(id=${student.id})}"><button id="update-btn" class = "btn">Update</button></a>
-                    <a th:href="@{/students/delete(id=${student.id})}"><button id="delete-btn" class = "btn">Delete</button></a>
-                </td>
-            </tr>
-        </table>
+            <table>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Enrollment date</th>
+                    <th></th>
+                </tr>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.enrollmentDate}"></td>
+                    <td>
+                        <a th:href="@{/students/details(id=${student.id})}"><button id="details-btn" class = "btn">Details</button></a>
+                        <a th:href="@{/students/update(id=${student.id})}"><button id="update-btn" class = "btn">Update</button></a>
+                        <a th:href="@{/students/delete(id=${student.id})}"><button id="delete-btn" class = "btn">Delete</button></a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
