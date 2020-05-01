@@ -15,6 +15,11 @@ nav a {
     padding: 10px 15px;
     text-decoration: none;
 }
+nav a:hover {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+}
 .content{
     padding-left: 5%;
     padding-right: 5%;
@@ -25,7 +30,7 @@ nav a {
     width: 70%;
 }
 table{
-    border: 5px solid #dddddd;
+    border: 3px solid #222;
     border-collapse: collapse;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 20px 70px -30px;
