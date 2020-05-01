@@ -16,9 +16,8 @@ nav a {
     text-decoration: none;
 }
 nav a:hover {
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
+    color: rgb(0,0,0);
+    background-color: rgb(150,150,150);
 }
 .content{
     padding-left: 5%;
