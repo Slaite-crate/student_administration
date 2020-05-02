@@ -3,10 +3,7 @@ package com.example.student_administration.repositories;
 import com.example.student_administration.models.Student;
 import com.example.student_administration.util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,19 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean create(Student student) {
-        return false;
+        String sqlStatement = "INSERT INTO students (id, first_name, last_name, enrollment_date, cpr) VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sqlStatement);
+            statement.setInt(1, student.getId());
+            statement.setString(2, student.getFirstName());
+            statement.setString(3, student.getLastName());
+            statement.setDate(4, student.getEnrollmentDate());
+            statement.setString(5, student.getCpr());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
     }
 
     @Override
@@ -66,11 +75,31 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean update(Student student) {
-        return false;
+        String sqlStatement = "UPDATE student SET id=?, first_name=?, last_name=?, emrollment_date=?, cpr=?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sqlStatement);
+            statement.setInt(1, student.getId());
+            statement.setString(2, student.getFirstName());
+            statement.setString(3, student.getLastName());
+            statement.setDate(4, student.getEnrollmentDate());
+            statement.setString(5, student.getCpr());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
     }
 
     @Override
     public boolean delete(int id) {
+        String sqlStatement = "DELETE from student where id=?";
+        try {
+            PreparedStatement statement = conn.prepareStatement(sqlStatement);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return false;
     }
 }

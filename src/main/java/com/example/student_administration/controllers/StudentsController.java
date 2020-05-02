@@ -3,6 +3,7 @@ package com.example.student_administration.controllers;
 import com.example.student_administration.models.Student;
 import com.example.student_administration.repositories.IStudentRepository;
 import com.example.student_administration.repositories.InMemoryStudentRepositoryImpl;
+import com.example.student_administration.repositories.StudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

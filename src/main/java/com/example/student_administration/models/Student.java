@@ -2,7 +2,7 @@ package com.example.student_administration.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Student {
     public int id;
