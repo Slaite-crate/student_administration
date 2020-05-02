@@ -1,12 +1,11 @@
 package com.example.student_administration.controllers;
 
+import com.example.student_administration.models.Student;
 import com.example.student_administration.repositories.IStudentRepository;
 import com.example.student_administration.repositories.InMemoryStudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StudentsController {
@@ -24,8 +23,21 @@ public class StudentsController {
     }
 
     @GetMapping("/students/create")
-    public String studentsCreate(){
+    public String studentsCreate(Model model){
+        model.addAttribute("studentID",
+                studentRepository.read(
+                    studentRepository.readAll().get(
+                        studentRepository.readAll().size() - 1
+                    ).getId()
+                ).getId() + 1
+        );
         return "students/create";
+    }
+
+    @PostMapping("/students/realcreate")
+    public String realCreateStudent(@ModelAttribute Student studentFromPost){
+        studentRepository.create(studentFromPost);
+        return "redirect:/students";
     }
 
     @GetMapping("/students/details")
