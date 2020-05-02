@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Student Update</title>
@@ -18,6 +18,27 @@
             <a href="/students"><button id="back-btn" class = "btn">Go Back</button></a>
             <p></p>
         </div>
+    </div>
+    <div>
+        <form action="/students/realupdate" method="post">
+            <label for="id">id</label>
+            <p th:text="${student.id}"></p>
+            <input id="id" name="id" type="hidden" th:value="${student.id}">
+            <br>
+            <label for="firstName">first name</label>
+            <input id="firstName" name="firstName" type="text" th:value="${student.firstName}">
+            <br>
+            <label for="lastName">last name</label>
+            <input id="lastName" name="lastName" type="text" th:value="${student.lastName}">
+            <br>
+            <label for="enrollmentDate">enrollment date</label>
+            <input id="enrollmentDate" name="enrollmentDate" type="date" th:value="${student.enrollmentDate}">
+            <br>
+            <label for="cpr">cpr</label>
+            <input id="cpr" name="cpr" type="text" th:value="${student.cpr}">
+            <br>
+            <button type="submit">update student</button>
+        </form>
     </div>
 </body>
 </html>

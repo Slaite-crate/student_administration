@@ -58,6 +58,12 @@ public class StudentsController {
         return "students/update";
     }
 
+    @PostMapping("/students/realupdate")
+    public String updateStudent(@ModelAttribute Student studentFromPost){
+        studentRepository.update(studentFromPost);
+        return "redirect:/students";
+    }
+
     @GetMapping("/students/realdelete")
     public String deleteStudent(@RequestParam int id){
         studentRepository.delete(id);

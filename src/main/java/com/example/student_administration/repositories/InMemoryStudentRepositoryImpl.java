@@ -47,7 +47,12 @@ public class InMemoryStudentRepositoryImpl implements IStudentRepository{
 
     @Override
     public boolean update(Student student) {
-        return false;
+        Student oldStud = read(student.getId());
+        oldStud.setFirstName(student.getFirstName());
+        oldStud.setLastName(student.getLastName());
+        oldStud.setEnrollmentDate(student.getEnrollmentDate());
+        oldStud.setCpr(student.getCpr());
+        return true;
     }
 
     @Override
