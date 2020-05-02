@@ -22,7 +22,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
             statement.setInt(1, student.getId());
             statement.setString(2, student.getFirstName());
             statement.setString(3, student.getLastName());
-            statement.setDate(4, student.getEnrollmentDate());
+            statement.setDate(4, convertUtilToSql(student.getEnrollmentDate()));
             statement.setString(5, student.getCpr());
             statement.executeUpdate();
         } catch (SQLException throwables) {
@@ -35,15 +35,16 @@ public class StudentRepositoryImpl implements IStudentRepository {
     public Student read(int id) {
         Student studentToReturn = new Student();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE students_id=?");
+            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE id=?");
+            getSingleStudent.setInt(1, id);
             ResultSet rs = getSingleStudent.executeQuery();
             while(rs.next()){
                 studentToReturn = new Student();
-                studentToReturn.setId(rs.getInt(1));
-                studentToReturn.setFirstName(rs.getString(2));
-                studentToReturn.setLastName(rs.getString(3));
-                studentToReturn.setEnrollmentDate(rs.getDate(4));
-                studentToReturn.setCpr(rs.getString(5));
+                studentToReturn.setId(rs.getInt("id"));
+                studentToReturn.setFirstName(rs.getString("first_name"));
+                studentToReturn.setLastName(rs.getString("last_name"));
+                studentToReturn.setEnrollmentDate(rs.getDate("enrollment_date"));
+                studentToReturn.setCpr(rs.getString("cpr"));
             }
         }
         catch(SQLException s){
@@ -60,11 +61,11 @@ public class StudentRepositoryImpl implements IStudentRepository {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Student tempStudent = new Student();
-                tempStudent.setId(rs.getInt(1));
-                tempStudent.setFirstName(rs.getString(2));
-                tempStudent.setLastName(rs.getString(3));
-                tempStudent.setEnrollmentDate(rs.getDate(4));
-                tempStudent.setCpr(rs.getString(5));
+                tempStudent.setId(rs.getInt("id"));
+                tempStudent.setFirstName(rs.getString("first_name"));
+                tempStudent.setLastName(rs.getString("last_name"));
+                tempStudent.setEnrollmentDate(rs.getDate("enrollment_date"));
+                tempStudent.setCpr(rs.getString("cpr"));
                 allStudents.add(tempStudent);
             }
         } catch (SQLException e) {
@@ -75,14 +76,15 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean update(Student student) {
-        String sqlStatement = "UPDATE student SET id=?, first_name=?, last_name=?, emrollment_date=?, cpr=?";
+        String sqlStatement = "UPDATE students SET id=?, first_name=?, last_name=?, enrollment_date=?, cpr=? where id=?";
         try {
             PreparedStatement statement = conn.prepareStatement(sqlStatement);
             statement.setInt(1, student.getId());
             statement.setString(2, student.getFirstName());
             statement.setString(3, student.getLastName());
-            statement.setDate(4, student.getEnrollmentDate());
+            statement.setDate(4, convertUtilToSql(student.getEnrollmentDate()));
             statement.setString(5, student.getCpr());
+            statement.setInt(6, student.getId());
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -92,7 +94,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean delete(int id) {
-        String sqlStatement = "DELETE from student where id=?";
+        String sqlStatement = "DELETE from students where id=?";
         try {
             PreparedStatement statement = conn.prepareStatement(sqlStatement);
             statement.setInt(1, id);
@@ -101,5 +103,9 @@ public class StudentRepositoryImpl implements IStudentRepository {
             throwables.printStackTrace();
         }
         return false;
+    }
+    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
     }
 }
