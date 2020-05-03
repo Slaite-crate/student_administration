@@ -31,4 +31,4 @@ build/
 .vscode/
 
 ### login info ###
-src/main/resources/application.properties
+/resources/application.properties
