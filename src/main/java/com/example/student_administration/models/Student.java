@@ -2,13 +2,13 @@ package com.example.student_administration.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Student {
     public int id;
     public String firstName;
     public String lastName;
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // needed for input field on html pages (in order to serve the right format)
+    //@DateTimeFormat(pattern = "yyyy-MM-dd") // needed for input field on html pages (in order to serve the right format)
     public Date enrollmentDate;
     public String cpr;
 

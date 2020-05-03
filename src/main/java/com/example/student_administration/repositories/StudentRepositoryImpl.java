@@ -19,6 +19,22 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean create(Student student) {
+        try{
+            PreparedStatement newStudent = conn.prepareStatement("INSERT INTO students (firstName,lastName,enrollment,student_cpr) VALUES (?,?,?,?)");
+            newStudent.setString(1,student.getFirstName());
+            newStudent.setString(2,student.getLastName());
+            newStudent.setDate(3,student.getEnrollmentDate());
+            newStudent.setString(4,student.getCpr());
+
+            int rowsInserted = newStudent.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new student was inserted successfully!");
+                return true;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
         return false;
     }
 
@@ -26,7 +42,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
     public Student read(int id) {
         Student studentToReturn = new Student();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE students_id=?");
+            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE student_id=?");
             ResultSet rs = getSingleStudent.executeQuery();
             while(rs.next()){
                 studentToReturn = new Student();
@@ -66,11 +82,39 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public boolean update(Student student) {
+        try{
+            PreparedStatement studentToEdit = conn.prepareStatement("UPDATE students SET firstName=?,lastName=?,enrollment=? student_cpr=? WHERE student_id=?");
+            studentToEdit.setString(1,student.getFirstName());
+            studentToEdit.setString(2,student.getLastName());
+            studentToEdit.setDate(3,student.getEnrollmentDate());
+            studentToEdit.setString(4,student.getCpr());
+            studentToEdit.setInt(5,student.getId());
+
+            int rowsInserted = studentToEdit.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A student was updated successfully!");
+                return true;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete(int id) {
+        try{
+            PreparedStatement deleteStudent = conn.prepareStatement("DELETE FROM students WHERE student_id=?;");
+            deleteStudent.setInt(1,id);
+
+            int rowsInserted = deleteStudent.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("The student whit id=" + id + " was deleted successfully!");
+                return true;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 }
