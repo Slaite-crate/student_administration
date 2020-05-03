@@ -25,13 +25,15 @@ public class StudentsController {
 
     @GetMapping("/students/create")
     public String studentsCreate(Model model){
-        model.addAttribute("studentID",
-                studentRepository.read(
+        int id = 1;
+        if (!studentRepository.readAll().isEmpty()) {
+            id = studentRepository.read(
                     studentRepository.readAll().get(
-                        studentRepository.readAll().size() - 1
+                            studentRepository.readAll().size() - 1
                     ).getId()
-                ).getId() + 1
-        );
+            ).getId() + 1;
+        }
+        model.addAttribute("studentID", id);
         return "students/create";
     }
 
