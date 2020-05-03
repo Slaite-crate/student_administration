@@ -3,10 +3,7 @@ package com.example.student_administration.repositories;
 import com.example.student_administration.models.Student;
 import com.example.student_administration.util.DatabaseConnectionManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,14 +40,13 @@ public class StudentRepositoryImpl implements IStudentRepository {
         Student studentToReturn = new Student();
         try {
             PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE student_id=?");
+            getSingleStudent.setInt(1,id);
             ResultSet rs = getSingleStudent.executeQuery();
             while(rs.next()){
-                studentToReturn = new Student();
-                studentToReturn.setId(rs.getInt(1));
-                studentToReturn.setFirstName(rs.getString(2));
-                studentToReturn.setLastName(rs.getString(3));
-                studentToReturn.setEnrollmentDate(rs.getDate(4));
-                studentToReturn.setCpr(rs.getString(5));
+                studentToReturn.setFirstName(rs.getString("firstName"));
+                studentToReturn.setLastName(rs.getString("lastName"));
+                studentToReturn.setEnrollmentDate(rs.getDate("enrollment"));
+                studentToReturn.setCpr(rs.getString("student_cpr"));
             }
         }
         catch(SQLException s){
@@ -61,17 +57,18 @@ public class StudentRepositoryImpl implements IStudentRepository {
 
     @Override
     public List<Student> readAll() {
+        Student student = null;
         List<Student> allStudents = new ArrayList<Student>();
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM students");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Student tempStudent = new Student();
-                tempStudent.setId(rs.getInt(1));
-                tempStudent.setFirstName(rs.getString(2));
-                tempStudent.setLastName(rs.getString(3));
-                tempStudent.setEnrollmentDate(rs.getDate(4));
-                tempStudent.setCpr(rs.getString(5));
+                tempStudent.setId(rs.getInt("student_id"));
+                tempStudent.setFirstName(rs.getString("firstName"));
+                tempStudent.setLastName(rs.getString("lastName"));
+                tempStudent.setEnrollmentDate(rs.getDate("enrollment"));
+                tempStudent.setCpr(rs.getString("student_cpr"));
                 allStudents.add(tempStudent);
             }
         } catch (SQLException e) {
