@@ -26,9 +26,10 @@ nav a:hover {
     margin: 1%;
 }
 
-#student-table{
+.view{
     width: 70%;
 }
+
 table{
     border: 3px solid #222;
     border-collapse: collapse;
@@ -50,6 +51,8 @@ tr:nth-child(even){
     border: none;
     color: black;
     padding: 7px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -79,4 +82,26 @@ tr:nth-child(even){
 }
 .btn:hover {
     box-shadow: 2px 2px 2px #888888;
+}
+label{
+    font-size: 12px;
+}
+input{
+    font-size: 12px;
+    width: 250px;
+    border-radius: 5px;
+}
+.tbl-btn{
+    background-color: #dddddd;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 5px; /* https://www.w3schools.com/css/css3_borders.asp */
+    box-shadow: 1px 1px 1px #888888;
+    transition-duration: 0.1s;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }

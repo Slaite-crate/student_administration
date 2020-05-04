@@ -15,30 +15,34 @@
         <div d="student-create-back">
             <h1>Update Student</h1>
             <p>Choose what you wanna update</p>
-            <a href="/students"><button id="back-btn" class = "btn">Go Back</button></a>
-            <p></p>
+            <a href="/students"><button id="back-btn" class = "btn">Back</button></a>
+        </div>
+        <div id ="student-create-view" class="view">
+            <form action="/students/realcreate" method="post">
+                <!--<label for="id">ID </label>
+                <label th:text="${studentID}"></label>
+                <br>-->
+                <input id="id" name="id" type="hidden" th:value="${studentID}">
+                <label for="firstName">First name:</label>
+                <br>
+                <input id="firstName" name="firstName" type="text" >
+                <br>
+                <label for="lastName">Last name:</label>
+                <br>
+                <input id="lastName" name="lastName" type="text" >
+                <br>
+                <label for="enrollmentDate">Enrollment date:</label>
+                <br>
+                <input id="enrollmentDate" name="enrollmentDate" type="date">
+                <br>
+                <label for="cpr">Cpr:</label>
+                <br>
+                <input id="cpr" name="cpr" type="text">
+                <br>
+                <button type="submit" id="create-btn" class ="btn">Create student</button>
+            </form>
         </div>
     </div>
-    <div>
-        <form action="/students/realcreate" method="post">
-            <label for="id">id</label>
-            <p th:text="${studentID}"></p>
-            <input id="id" name="id" type="hidden" th:value="${studentID}">
-            <br>
-            <label for="firstName">first name</label>
-            <input id="firstName" name="firstName" type="text">
-            <br>
-            <label for="lastName">last name</label>
-            <input id="lastName" name="lastName" type="text">
-            <br>
-            <label for="enrollmentDate">enrollment date</label>
-            <input id="enrollmentDate" name="enrollmentDate" type="date">
-            <br>
-            <label for="cpr">cpr</label>
-            <input id="cpr" name="cpr" type="text">
-            <br>
-            <button type="submit">create student</button>
-        </form>
-    </div>
+
 </body>
 </html>
