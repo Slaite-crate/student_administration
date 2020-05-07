@@ -6,38 +6,35 @@
     <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
 </head>
 <body>
-<nav id="bar">
-    <a href="/" class="top" id="kea">KEA</a>
-    <a href="/students" class="top" id="students">Students</a>
-    <a href="/courses" class="top" id="courses">Courses</a>
-</nav>
-<div id="course-update" class="content">
-    <div id="course-update-back">
-        <h1>Update Student</h1>
-        <p>Choose what you wanna update</p>
-        <a href="/courses"><button id="back-btn" class = "btn">Back</button></a>
+    <nav id="bar">
+        <a href="/" class="top" id="kea">KEA</a>
+        <a href="/students" class="top" id="students">Students</a>
+        <a href="/courses" class="top" id="courses">Courses</a>
+    </nav>
+    <div id="course-update" class="content">
+        <div id="course-update-back">
+            <h1>Update Course</h1>
+            <p>Choose what you wanna update</p>
+            <a href="/courses"><button id="back-btn" class = "btn">Back</button></a>
+        </div>
+        <div id ="course-update-view" class="view">
+            <form action="/courses/realupdate" method="post">
+                <input id="id" name="id" type="hidden" th:value="${course.id}">
+                <label for="courseName">Course name:</label>
+                <br>
+                <input id="courseName" name="courseName" type="text" th:value="${course.courseName}">
+                <br>
+                <label for="ECTS">ECTS:</label>
+                <br>
+                <input id="ECTS" name="ECTS" type="number" th:value="${course.ECTS}">
+                <br>
+                <label for="startDate">Start date:</label>
+                <br>
+                <input id="startDate" name="startDate" type="date" th:value="${course.startDate}">
+                <br>
+                <button type="submit" id="update-btn" class ="btn">Update</button>
+            </form>
+        </div>
     </div>
-    <div id ="course-update-view" class="view">
-        <form action="/courses/realupdate" method="post">
-            <label for="id">ID: </label>
-            <br>
-            <input id="id" name="id" type="text" th:value="${course.id}">
-            <br>
-            <label for="courseName">Course name:</label>
-            <br>
-            <input id="courseName" name="courseName" type="text" th:value="${course.courseName}">
-            <br>
-            <label for="startDate">Start date:</label>
-            <br>
-            <input id="startDate" name="startDate" type="date" th:value="${course.startDate}">
-            <br>
-            <label for="ects">ECTS:</label>
-            <br>
-            <input id="ects" name="ects" type="text" th:value="${course.ECTS}">
-            <br>
-            <button type="submit" id="update-btn" class ="btn">Update</button>
-        </form>
-    </div>
-</div>
 </body>
 </html>

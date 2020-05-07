@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Details</title>
+    <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
 </head>
 <body>
-
+    <nav id="bar">
+        <a href="/" class="top" id="kea">KEA</a>
+        <a href="/students" class="top" id="students">Students</a>
+        <a href="/courses" class="top" id="courses">Courses</a>
+    </nav>
+    <div id="course-details" class="content">
+        <div id="course-details-back">
+            <h1>Course</h1>
+            <p>Do you want to delete?</p>
+            <a href="/courses"><button id="back-btn" class = "btn">Back</button></a>
+            <a th:href="@{/courses/realdelete(id=${course.id})}"><button id="delete-btn" class = "btn">Delete</button></a>
+        </div>
+        <div id="courses-delete-view" class ="view">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>ECTS point</th>
+                    <th>Start date</th>
+                </tr>
+                <tr>
+                    <td th:text="${course.id}"></td>
+                    <td th:text="${course.courseName}"></td>
+                    <td th:text="${course.ECTS}"></td>
+                    <td th:text="${course.startDate}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

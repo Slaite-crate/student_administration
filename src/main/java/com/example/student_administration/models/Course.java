@@ -6,14 +6,20 @@ public class Course {
 
     private int id;
     private String courseName;
-    private Date startDate;
     private int ECTS;
+    private Date startDate;
 
-    public Course(int id, String courseName, Date startDate, int ECTS) {
+    public Course(int id, String courseName, int ECTS, Date startDate) {
         this.id = id;
         this.courseName = courseName;
-        this.startDate = startDate;
         this.ECTS = ECTS;
+        this.startDate = startDate;
+    }
+
+    public Course(String courseName, int ECTS, Date startDate) {
+        this.courseName = courseName;
+        this.ECTS = ECTS;
+        this.startDate = startDate;
     }
 
     public Course() {

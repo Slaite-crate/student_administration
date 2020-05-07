@@ -44,7 +44,7 @@ public class CoursesController {
 
     @GetMapping("/courses/delete")
     public String coursesDelete(@RequestParam int id, Model model){
-        model.addAttribute("student", courseRepository.read(id));
+        model.addAttribute("course", courseRepository.read(id));
         return "courses/delete";
     }
 

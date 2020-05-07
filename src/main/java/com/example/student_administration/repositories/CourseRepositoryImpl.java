@@ -19,13 +19,12 @@ public class CourseRepositoryImpl implements ICourseRepository{
 
     @Override
     public boolean create(Course course) {
-        String sqlStatement = "INSERT INTO courses (course_id, course_name, start_date, ECTS) VALUES (?, ?, ?, ?)";
+        String sqlStatement = "INSERT INTO courses (course_name, start_date, ECTS) VALUES (?, ?, ?)";
         try {
             PreparedStatement statement = conn.prepareStatement(sqlStatement);
-            statement.setInt(1, course.getId());
-            statement.setString(2, course.getCourseName());
-            statement.setDate(3, (course.getStartDate()));
-            statement.setInt(4, course.getECTS());
+            statement.setString(1, course.getCourseName());
+            statement.setDate(2, course.getStartDate());
+            statement.setInt(3, course.getECTS());
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
