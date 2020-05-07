@@ -12,20 +12,26 @@
         <a href="/courses" class="top" id="courses">Courses</a>
     </nav>
     <div id="student-details" class="content">
-        <div d="student-details-back">
+        <div id="student-details-back">
             <h1>Student</h1>
             <p>Information about selectet student</p>
-            <a href="/students"><button id="back-btn" class = "btn">Go Back</button></a>
-            <p></p>
+            <a href="/students"><button id="back-btn" class = "btn">Back</button></a>
         </div>
-        <div id="students-details-table" class ="tbl">
+        <div id="students-details-view" class ="view">
             <table>
                 <tr>
-                    <th th:text="${student.id}"></th>
-                    <th th:text="${student.firstName}"></th>
-                    <th th:text="${student.lastName}"></th>
-                    <th th:text="${student.enrollmentDate}"></th>
-                    <th th:text="${student.cpr}"></th>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Enrollment date</th>
+                    <th>CPR</th>
+                </tr>
+                <tr>
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.enrollmentDate}"></td>
+                    <td th:text="${student.cpr}"></td>
                 </tr>
             </table>
         </div>

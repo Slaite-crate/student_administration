@@ -29,6 +29,4 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### login info ###
-/resources/application.properties
+/src/main/resources/application.properties

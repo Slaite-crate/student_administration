@@ -12,15 +12,31 @@
         <a href="/courses" class="top" id="courses">Courses</a>
     </nav>
     <div id="student-delete" class="content">
-        <div d="student-delete-back">
-            <h1>Update Student</h1>
+        <div id="student-delete-back">
+            <h1>Delete Student</h1>
             <p>Do you want to delete</p>
-            <p th:text="${student.firstName}"></p>
-            <p th:text="${student.lastName}"></p>
-            <a th:href="@{/students/realdelete(id=${student.id})}"><button style="background-color: red">delete</button></a>
-            <a href="/students"><button id="back-btn" class = "btn">Go Back</button></a>
-            <p></p>
+            <a href="/students"><button id="back-btn" class = "btn">Back</button></a>
+            <a th:href="@{/students/realdelete(id=${student.id})}"><button id="delete-btn" class = "btn">Delete</button></a>
         </div>
+        <div id="students-details-view" class ="view">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Enrollment date</th>
+                    <th>CPR</th>
+                </tr>
+                <tr>
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.enrollmentDate}"></td>
+                    <td th:text="${student.cpr}"></td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </body>
 </html>
