@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
+</head>
+<body>
+<nav id="bar">
+    <a href="/" class="top" id="kea">KEA</a>
+    <a href="/students" class="top" id="students">Students</a>
+    <a href="/courses" class="top" id="courses">Courses</a>
+</nav>
+<div id="courses-list" class="content">
+    <div id="courses-create">
+        <h1>Students</h1>
+        <p>Enrolled students at KEA</p>
+        <a href="/courses/create"><button id="create-btn" class = "btn">Create</button></a>
+    </div>
+    <div id="courses-list-view" class ="view">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>ECTS point</th>
+                <th>Start date</th>
+                <th></th>
+            </tr>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.courseName}"></td>
+                <td th:text="${course.ECTS}"></td>
+                <td th:text="${course.startDate}"></td>
+                <td>
+                    <a th:href="@{/courses/details(id=${course.id})}"><button id="details-btn" class = "tbl-btn">Details</button></a>
+                    <a th:href="@{/courses/update(id=${course.id})}"><button id="update-btn" class = "tbl-btn">Update</button></a>
+                    <a th:href="@{/courses/delete(id=${course.id})}"><button id="delete-btn" class = "tbl-btn">Delete</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

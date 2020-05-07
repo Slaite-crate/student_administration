@@ -24,16 +24,7 @@ public class StudentsController {
     }
 
     @GetMapping("/students/create")
-    public String studentsCreate(Model model){
-        int id = 1;
-        if (!studentRepository.readAll().isEmpty()) {
-            id = studentRepository.read(
-                    studentRepository.readAll().get(
-                            studentRepository.readAll().size() - 1
-                    ).getId()
-            ).getId() + 1;
-        }
-        model.addAttribute("studentID", id);
+    public String studentsCreate(){
         return "students/create";
     }
 
