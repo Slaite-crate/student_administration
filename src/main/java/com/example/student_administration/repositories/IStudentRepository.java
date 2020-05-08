@@ -23,6 +23,7 @@ public interface IStudentRepository {
 
     public void addCourse(int student_id, int course_id);
 
+    public void removeCourse(int student_id, int course_id);
 }
 
 

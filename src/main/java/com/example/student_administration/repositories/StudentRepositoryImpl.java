@@ -161,4 +161,18 @@ public class StudentRepositoryImpl implements IStudentRepository {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    public void removeCourse(int student_id, int course_id) {
+        String sql = "DELETE FROM link WHERE student_id = ? and course_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, student_id);
+            ps.setInt(2, course_id);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }

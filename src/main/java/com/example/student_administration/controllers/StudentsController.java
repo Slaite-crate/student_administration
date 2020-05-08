@@ -77,4 +77,10 @@ public class StudentsController {
         studentRepository.addCourse(student_id, course_id);
         return "redirect:/students/courses?id="+student_id;
     }
+
+    @GetMapping("/students/removeCourse")
+    public String removeCourseFromStudent(@RequestParam int student_id, int course_id){
+        studentRepository.removeCourse(student_id, course_id);
+        return "redirect:/students/courses?id="+student_id;
+    }
 }

@@ -81,4 +81,9 @@ public class InMemoryStudentRepositoryImpl implements IStudentRepository{
     public void addCourse(int student_id, int course_id) {
 
     }
+
+    @Override
+    public void removeCourse(int student_id, int course_id) {
+
+    }
 }

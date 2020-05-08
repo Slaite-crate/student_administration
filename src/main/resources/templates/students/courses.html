@@ -42,11 +42,15 @@
                     <th>Name</th>
                     <th>ECTS point</th>
                     <th>Start date</th>
+                    <th></th>
                 </tr>
                 <tr th:each="onCourse : ${oncourses}">
                     <td th:text="${onCourse.courseName}"></td>
                     <td th:text="${onCourse.ECTS}"></td>
                     <td th:text="${onCourse.startDate}"></td>
+                    <td>
+                        <a th:href="@{/students/removeCourse(student_id=${student.id}, course_id=${onCourse.id})}"><button id="removeCourse-btn" class = "tbl-btn">Remove courses</button></a>
+                    </td>
                 </tr>
             </table>
         </div>
