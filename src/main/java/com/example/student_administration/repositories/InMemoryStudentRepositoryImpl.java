@@ -1,5 +1,6 @@
 package com.example.student_administration.repositories;
 
+import com.example.student_administration.models.Course;
 import com.example.student_administration.models.Student;
 
 import java.sql.Date;
@@ -63,5 +64,11 @@ public class InMemoryStudentRepositoryImpl implements IStudentRepository{
             inMemoryDatabase.remove(read(id));
             return true;
         } else return false;
+    }
+
+    @Override
+    public List<Course> readCourses(int id){
+        List<Course> ls = new ArrayList<>();
+        return ls;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.student_administration.repositories;
 
+import com.example.student_administration.models.Course;
 import com.example.student_administration.models.Student;
 import com.example.student_administration.util.DatabaseConnectionManager;
 
@@ -103,8 +104,26 @@ public class StudentRepositoryImpl implements IStudentRepository {
         }
         return false;
     }
-    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
+
+    @Override
+    public List<Course> readCourses(int id){
+        List<Course> courses = new ArrayList<>();
+        String sql = "SELECT cs.course_id, cs.course_name, cs.ECTS, cs.start_date FROM courses AS cs LEFT JOIN link AS l ON cs.course_id = l.course_id LEFT JOIN students AS ss ON l.student_id = ss.student_id WHERE ss.student_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Course tempCourse = new Course();
+                tempCourse.setId(rs.getInt("course_id"));
+                tempCourse.setCourseName(rs.getString("course_name"));
+                tempCourse.setECTS(rs.getInt("ECTS"));
+                tempCourse.setStartDate(rs.getDate("start_date"));
+                courses.add(tempCourse);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return courses;
     }
 }

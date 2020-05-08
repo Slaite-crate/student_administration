@@ -1,5 +1,6 @@
 package com.example.student_administration.repositories;
 
+import com.example.student_administration.models.Course;
 import com.example.student_administration.models.Student;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public interface IStudentRepository {
     public boolean update(Student student);
 
     public boolean delete(int id);
+
+    public List<Course> readCourses(int id);
+
 }
 
 

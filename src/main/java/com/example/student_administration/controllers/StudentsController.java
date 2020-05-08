@@ -35,8 +35,9 @@ public class StudentsController {
     }
 
     @GetMapping("/students/details")
-    public String studentsDetails(@RequestParam int id, Model model){
+    public String studentsDetails(@RequestParam int id, Model model, Model model2){
         model.addAttribute("student", studentRepository.read(id));
+        model2.addAttribute("courses", studentRepository.readCourses(id));
         return "students/details";
     }
 

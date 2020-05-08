@@ -35,6 +35,21 @@
                 </tr>
             </table>
         </div>
+        <br>
+        <div id="courses-list-view" class ="view">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>ECTS point</th>
+                    <th>Start date</th>
+                </tr>
+                <tr th:each="course : ${courses}">
+                    <td th:text="${course.courseName}"></td>
+                    <td th:text="${course.ECTS}"></td>
+                    <td th:text="${course.startDate}"></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>
