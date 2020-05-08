@@ -67,8 +67,18 @@ public class InMemoryStudentRepositoryImpl implements IStudentRepository{
     }
 
     @Override
-    public List<Course> readCourses(int id){
+    public List<Course> readStudentsCourses(int id){
         List<Course> ls = new ArrayList<>();
         return ls;
+    }
+
+    @Override
+    public List<Course> readNotOnCourses(int id) {
+        return null;
+    }
+
+    @Override
+    public void addCourse(int student_id, int course_id) {
+
     }
 }

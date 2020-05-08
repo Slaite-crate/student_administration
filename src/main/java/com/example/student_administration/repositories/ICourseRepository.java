@@ -17,5 +17,5 @@ public interface ICourseRepository {
 
     public boolean delete(int id);
 
-    public List<Student> readStudents(int id);
+    public List<Student> readCoursesStudents(int id);
 }

@@ -105,7 +105,7 @@ public class CourseRepositoryImpl implements ICourseRepository{
     }
 
     @Override
-    public List<Student> readStudents(int id) {
+    public List<Student> readCoursesStudents(int id) {
         List<Student> students = new ArrayList<>();
         String sql = "SELECT ss.student_id, ss.first_name, ss.last_name, ss.enrollment_date, ss.student_cpr FROM students AS ss LEFT JOIN link AS l ON ss.student_id = l.student_id LEFT JOIN courses AS cs ON l.course_id = cs.course_id WHERE cs.course_id = ?";
         try {

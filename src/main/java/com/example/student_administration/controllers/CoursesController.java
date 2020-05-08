@@ -1,7 +1,6 @@
 package com.example.student_administration.controllers;
 
 import com.example.student_administration.models.Course;
-import com.example.student_administration.models.Student;
 import com.example.student_administration.repositories.CourseRepositoryImpl;
 import com.example.student_administration.repositories.ICourseRepository;
 import org.springframework.stereotype.Controller;
@@ -39,7 +38,7 @@ public class CoursesController {
     @GetMapping("/courses/details")
     public String coursesDetails(@RequestParam int id, Model model, Model model2){
         model.addAttribute("course", courseRepository.read(id));
-        model2.addAttribute("students", courseRepository.readStudents(id));
+        model2.addAttribute("students", courseRepository.readCoursesStudents(id));
         return "courses/details";
     }
 

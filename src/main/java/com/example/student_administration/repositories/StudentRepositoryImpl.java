@@ -106,7 +106,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
     }
 
     @Override
-    public List<Course> readCourses(int id){
+    public List<Course> readStudentsCourses(int id){
         List<Course> courses = new ArrayList<>();
         String sql = "SELECT cs.course_id, cs.course_name, cs.ECTS, cs.start_date FROM courses AS cs LEFT JOIN link AS l ON cs.course_id = l.course_id LEFT JOIN students AS ss ON l.student_id = ss.student_id WHERE ss.student_id = ?";
         try {
@@ -125,5 +125,40 @@ public class StudentRepositoryImpl implements IStudentRepository {
             throwables.printStackTrace();
         }
         return courses;
+    }
+
+    @Override
+    public List<Course> readNotOnCourses(int id) {
+        List<Course> courses = new ArrayList<>();
+        String sql = "SELECT cs.course_id, cs.course_name, cs.ECTS, cs.start_date from courses as cs where cs.course_id not in (SELECT cs.course_id FROM courses AS cs JOIN link AS l ON cs.course_id = l.course_id JOIN students AS ss ON l.student_id = ss.student_id where ss.student_id = ?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Course tempCourse = new Course();
+                tempCourse.setId(rs.getInt("course_id"));
+                tempCourse.setCourseName(rs.getString("course_name"));
+                tempCourse.setECTS(rs.getInt("ECTS"));
+                tempCourse.setStartDate(rs.getDate("start_date"));
+                courses.add(tempCourse);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return courses;
+    }
+
+    @Override
+    public void addCourse(int student_id, int course_id) {
+        String sql = "INSERT INTO link VALUES(?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, student_id);
+            ps.setInt(2, course_id);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

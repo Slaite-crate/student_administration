@@ -2,7 +2,6 @@ package com.example.student_administration.controllers;
 
 import com.example.student_administration.models.Student;
 import com.example.student_administration.repositories.IStudentRepository;
-import com.example.student_administration.repositories.InMemoryStudentRepositoryImpl;
 import com.example.student_administration.repositories.StudentRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +36,7 @@ public class StudentsController {
     @GetMapping("/students/details")
     public String studentsDetails(@RequestParam int id, Model model, Model model2){
         model.addAttribute("student", studentRepository.read(id));
-        model2.addAttribute("courses", studentRepository.readCourses(id));
+        model2.addAttribute("courses", studentRepository.readStudentsCourses(id));
         return "students/details";
     }
 
@@ -63,5 +62,19 @@ public class StudentsController {
     public String deleteStudent(@RequestParam int id){
         studentRepository.delete(id);
         return "redirect:/students";
+    }
+
+    @GetMapping("/students/courses")
+    public String studentsCourses(@RequestParam int id, Model studentModel, Model onCourseModel, Model notOnModel){
+        studentModel.addAttribute("student", studentRepository.read(id));
+        onCourseModel.addAttribute("oncourses", studentRepository.readStudentsCourses(id));
+        notOnModel.addAttribute("offcourses", studentRepository.readNotOnCourses(id));
+        return "students/courses";
+    }
+
+    @GetMapping("/students/addCourse")
+    public String addCourseToStudent(@RequestParam int student_id, int course_id){
+        studentRepository.addCourse(student_id, course_id);
+        return "redirect:/students/courses?id="+student_id;
     }
 }

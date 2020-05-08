@@ -17,7 +17,11 @@ public interface IStudentRepository {
 
     public boolean delete(int id);
 
-    public List<Course> readCourses(int id);
+    public List<Course> readStudentsCourses(int id);
+
+    public List<Course> readNotOnCourses(int id);
+
+    public void addCourse(int student_id, int course_id);
 
 }
 

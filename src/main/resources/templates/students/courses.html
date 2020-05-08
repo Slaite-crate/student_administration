@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <link rel="stylesheet" type="text/css" href="../styles/HomeStyle.css">
+</head>
+<body>
+    <nav id="bar">
+        <a href="/" class="top" id="kea">KEA</a>
+        <a href="/students" class="top" id="students">Students</a>
+        <a href="/courses" class="top" id="courses">Courses</a>
+    </nav>
+    <div id="student-details" class="content">
+        <div id="student-details-back">
+            <h1>Student</h1>
+            <p>Information about selectet student</p>
+            <a href="/students"><button id="back-btn" class = "btn">Back</button></a>
+        </div>
+        <div id="students-details-view" class ="view">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Enrollment date</th>
+                    <th>CPR</th>
+                </tr>
+                <tr>
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.enrollmentDate}"></td>
+                    <td th:text="${student.cpr}"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div id="courses-list-view" class ="view">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>ECTS point</th>
+                    <th>Start date</th>
+                </tr>
+                <tr th:each="onCourse : ${oncourses}">
+                    <td th:text="${onCourse.courseName}"></td>
+                    <td th:text="${onCourse.ECTS}"></td>
+                    <td th:text="${onCourse.startDate}"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div id="notoncourses-list-view" class ="view">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>ECTS point</th>
+                    <th>Start date</th>
+                    <th></th>
+                </tr>
+                <tr th:each="offCourse : ${offcourses}">
+                    <td th:text="${offCourse.courseName}"></td>
+                    <td th:text="${offCourse.ECTS}"></td>
+                    <td th:text="${offCourse.startDate}"></td>
+                    <td>
+                        <a th:href="@{/students/addCourse(student_id=${student.id}, course_id=${offCourse.id})}"><button id="addCourse-btn" class = "tbl-btn">Add courses</button></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
