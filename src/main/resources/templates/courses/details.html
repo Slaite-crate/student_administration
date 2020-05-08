@@ -33,6 +33,21 @@
                 </tr>
             </table>
         </div>
+        <br>
+        <div id="courses-list-view" class ="view">
+            <table>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Enrollment date</th>
+                </tr>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.enrollmentDate}"></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>
