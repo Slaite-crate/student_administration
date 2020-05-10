@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,11 +14,15 @@
     <div id="course-create" class="content">
         <div id="course-create-back">
             <h1>Create Course</h1>
-            <p>Choose what you wanna update</p>
+            <p>Add information about new course</p>
             <a href="/courses"><button id="back-btn" class = "btn">Back</button></a>
         </div>
         <div id ="course-create-view" class="view">
             <form action="/courses/realcreate" method="post">
+                <!--<label for="courseId">Course ID:</label>
+                <br>
+                <input id="courseId" name="courseId" type="number">
+                <br>-->
                 <label for="courseName">Course name:</label>
                 <br>
                 <input id="courseName" name="courseName" type="text">
