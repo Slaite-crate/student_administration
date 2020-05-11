@@ -1,23 +1,7 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema student_administration
--- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `student_administration` ;
-
--- -----------------------------------------------------
--- Schema student_administration
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `student_administration` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `student_administration`;
 USE `student_administration` ;
 
--- -----------------------------------------------------
--- Table `student_administration`.`students`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `student_administration`.`students` (
   `student_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(15) NOT NULL,
@@ -29,10 +13,6 @@ CREATE TABLE IF NOT EXISTS `student_administration`.`students` (
   UNIQUE INDEX `student_id_UNIQUE` (`student_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `student_administration`.`courses`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `student_administration`.`courses` (
   `course_id` INT NOT NULL AUTO_INCREMENT,
   `course_name` VARCHAR(20) NOT NULL,
@@ -42,10 +22,6 @@ CREATE TABLE IF NOT EXISTS `student_administration`.`courses` (
   UNIQUE INDEX `course_id_UNIQUE` (`course_id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `student_administration`.`Link`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `student_administration`.`Link` (
   `student_id` INT NOT NULL,
   `course_id` INT NOT NULL,
@@ -63,7 +39,20 @@ CREATE TABLE IF NOT EXISTS `student_administration`.`Link` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+USE student_administration;
+INSERT INTO students (first_name,last_name,enrollment_date,student_cpr)
+    VALUES('Test','Testsen','2020-04-03','0123456789');
+INSERT INTO students (first_name,last_name,enrollment_date,student_cpr)
+    VALUES('Test','Testsen','2020-04-03','0123456700');
+INSERT INTO courses (course_id,course_name,start_date,ECTS)
+    VALUES(10,'Teknik 1','2020-08-20',15);
+INSERT INTO courses (course_id,course_name,start_date,ECTS)
+    VALUES(20,'Teknik 2','2021-08-20',5);
+INSERT INTO Link (student_id,course_id) VALUES (1,20);
+SELECT s.first_name, s.enrollment_date,c.course_name,c.start_date
+FROM students AS s
+         LEFT JOIN link AS l
+                   ON s.student_id = l.student_id
+         LEFT JOIN courses AS c
+                   ON l.course_id = c.course_id
+WHERE c.course_name IS NOT NULL;
